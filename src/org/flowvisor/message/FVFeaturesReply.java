@@ -39,6 +39,8 @@ public class FVFeaturesReply extends org.openflow.protocol.OFFeaturesReply
 				newPorts.add(phyPort);
 		}
 		this.setPorts(newPorts);
+        this.setDatapathId((this.getDatapathId() & 0xFFFF0000FFFFFFFFL) |
+                ((((long)fvSlicer.getSliceName().hashCode()) & 0xFFFFL) << 32));
 	}
 
 	@Override
